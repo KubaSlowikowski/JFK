@@ -51,6 +51,18 @@ public class QbsonBaseListener implements QbsonListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSubtraction(QbsonParser.SubtractionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSubtraction(QbsonParser.SubtractionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterReal(QbsonParser.RealContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -75,18 +87,6 @@ public class QbsonBaseListener implements QbsonListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSubstraction(QbsonParser.SubstractionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSubstraction(QbsonParser.SubstractionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterMultiplication(QbsonParser.MultiplicationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -99,13 +99,13 @@ public class QbsonBaseListener implements QbsonListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInt(QbsonParser.IntContext ctx) {}
+	@Override public void enterInt(QbsonParser.IntContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInt(QbsonParser.IntContext ctx) {}
+	@Override public void exitInt(QbsonParser.IntContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

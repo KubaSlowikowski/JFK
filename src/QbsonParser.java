@@ -261,6 +261,29 @@ public class QbsonParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class SubtractionContext extends CommandContext {
+		public List<CommandContext> command() {
+			return getRuleContexts(CommandContext.class);
+		}
+		public CommandContext command(int i) {
+			return getRuleContext(CommandContext.class,i);
+		}
+		public TerminalNode SUB() { return getToken(QbsonParser.SUB, 0); }
+		public SubtractionContext(CommandContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof QbsonListener ) ((QbsonListener)listener).enterSubtraction(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof QbsonListener ) ((QbsonListener)listener).exitSubtraction(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QbsonVisitor ) return ((QbsonVisitor<? extends T>)visitor).visitSubtraction(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 	public static class RealContext extends CommandContext {
 		public TerminalNode REAL() { return getToken(QbsonParser.REAL, 0); }
 		public RealContext(CommandContext ctx) { copyFrom(ctx); }
@@ -292,29 +315,6 @@ public class QbsonParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof QbsonVisitor ) return ((QbsonVisitor<? extends T>)visitor).visitId(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SubstractionContext extends CommandContext {
-		public List<CommandContext> command() {
-			return getRuleContexts(CommandContext.class);
-		}
-		public CommandContext command(int i) {
-			return getRuleContext(CommandContext.class,i);
-		}
-		public TerminalNode SUB() { return getToken(QbsonParser.SUB, 0); }
-		public SubstractionContext(CommandContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof QbsonListener ) ((QbsonListener)listener).enterSubstraction(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof QbsonListener ) ((QbsonListener)listener).exitSubstraction(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof QbsonVisitor ) return ((QbsonVisitor<? extends T>)visitor).visitSubstraction(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -457,7 +457,7 @@ public class QbsonParser extends Parser {
 						break;
 					case 2:
 						{
-						_localctx = new SubstractionContext(new CommandContext(_parentctx, _parentState));
+						_localctx = new SubtractionContext(new CommandContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_command);
 						setState(31);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");

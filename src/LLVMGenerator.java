@@ -153,4 +153,8 @@ class LLVMGenerator {
         text += "ret i32 0 }\n";
         return text;
     }
+
+    public static int getReg() {
+        return reg;
+    }
 }

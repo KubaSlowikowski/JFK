@@ -41,6 +41,18 @@ public interface QbsonListener extends ParseTreeListener {
 	 */
 	void exitDivision(QbsonParser.DivisionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code subtraction}
+	 * labeled alternative in {@link QbsonParser#command}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubtraction(QbsonParser.SubtractionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code subtraction}
+	 * labeled alternative in {@link QbsonParser#command}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubtraction(QbsonParser.SubtractionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code real}
 	 * labeled alternative in {@link QbsonParser#command}.
 	 * @param ctx the parse tree
@@ -64,18 +76,6 @@ public interface QbsonListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitId(QbsonParser.IdContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code substraction}
-	 * labeled alternative in {@link QbsonParser#command}.
-	 * @param ctx the parse tree
-	 */
-	void enterSubstraction(QbsonParser.SubstractionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code substraction}
-	 * labeled alternative in {@link QbsonParser#command}.
-	 * @param ctx the parse tree
-	 */
-	void exitSubstraction(QbsonParser.SubstractionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code multiplication}
 	 * labeled alternative in {@link QbsonParser#command}.

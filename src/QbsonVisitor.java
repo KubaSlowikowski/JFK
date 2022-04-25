@@ -30,6 +30,13 @@ public interface QbsonVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDivision(QbsonParser.DivisionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code subtraction}
+	 * labeled alternative in {@link QbsonParser#command}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubtraction(QbsonParser.SubtractionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code real}
 	 * labeled alternative in {@link QbsonParser#command}.
 	 * @param ctx the parse tree
@@ -43,13 +50,6 @@ public interface QbsonVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitId(QbsonParser.IdContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code substraction}
-	 * labeled alternative in {@link QbsonParser#command}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSubstraction(QbsonParser.SubstractionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code multiplication}
 	 * labeled alternative in {@link QbsonParser#command}.

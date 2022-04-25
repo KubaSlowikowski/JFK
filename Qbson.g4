@@ -5,7 +5,7 @@ prog: 'styrt'( line? SEMI)* 'qniec';
 line: ID EQ command     #assign;
 
 command: command ADD command   #addition
-    | command SUB command      #substraction
+    | command SUB command      #subtraction
     | command MULT command     #multiplication
     | command DIV command      #division
     | INT       #int
