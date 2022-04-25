@@ -7,7 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
         String input = "styrt\n" +
-                "a = 13;\n" +
+                "a = 2;\n" +
+                "b = 4;\n" +
+                "c = a * b;\n" +
                 "qniec";
 
         QbsonLexer lexer = new QbsonLexer(CharStreams.fromString(input));

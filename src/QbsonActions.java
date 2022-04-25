@@ -199,6 +199,29 @@ public class QbsonActions extends QbsonBaseListener {
         }
     }
 
+    @Override
+    public void exitPrint(final QbsonParser.PrintContext ctx) {
+        String id = ctx.ID().getText();
+        Type type = variables.get(id);
+        if (type == Type.INTEGER) {
+            LLVMGenerator.printInt(id);
+        } else if (type == Type.REAL) {
+            LLVMGenerator.printDouble(id);
+        }
+    }
+
+    @Override
+    public void exitScanInt(final QbsonParser.ScanIntContext ctx) {
+        String id = LLVMGenerator.scanfInt();
+        stack.push(new Value(id, Type.INTEGER));
+    }
+
+    @Override
+    public void exitScanReal(final QbsonParser.ScanRealContext ctx) {
+        String id = LLVMGenerator.scanfInt();
+        stack.push(new Value(id, Type.REAL));
+    }
+
     private void printError(String message, int line) {
         System.err.println("Błąd w linii (" + line + "). Treść błędu: " + message);
         System.exit(1);

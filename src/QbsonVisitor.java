@@ -23,12 +23,33 @@ public interface QbsonVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssign(QbsonParser.AssignContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code print}
+	 * labeled alternative in {@link QbsonParser#line}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrint(QbsonParser.PrintContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code scanReal}
+	 * labeled alternative in {@link QbsonParser#command}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScanReal(QbsonParser.ScanRealContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code division}
 	 * labeled alternative in {@link QbsonParser#command}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitDivision(QbsonParser.DivisionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code scanInt}
+	 * labeled alternative in {@link QbsonParser#command}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScanInt(QbsonParser.ScanIntContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code subtraction}
 	 * labeled alternative in {@link QbsonParser#command}.

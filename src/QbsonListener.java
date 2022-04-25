@@ -29,6 +29,30 @@ public interface QbsonListener extends ParseTreeListener {
 	 */
 	void exitAssign(QbsonParser.AssignContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code print}
+	 * labeled alternative in {@link QbsonParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrint(QbsonParser.PrintContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code print}
+	 * labeled alternative in {@link QbsonParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrint(QbsonParser.PrintContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code scanReal}
+	 * labeled alternative in {@link QbsonParser#command}.
+	 * @param ctx the parse tree
+	 */
+	void enterScanReal(QbsonParser.ScanRealContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code scanReal}
+	 * labeled alternative in {@link QbsonParser#command}.
+	 * @param ctx the parse tree
+	 */
+	void exitScanReal(QbsonParser.ScanRealContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code division}
 	 * labeled alternative in {@link QbsonParser#command}.
 	 * @param ctx the parse tree
@@ -40,6 +64,18 @@ public interface QbsonListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDivision(QbsonParser.DivisionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code scanInt}
+	 * labeled alternative in {@link QbsonParser#command}.
+	 * @param ctx the parse tree
+	 */
+	void enterScanInt(QbsonParser.ScanIntContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code scanInt}
+	 * labeled alternative in {@link QbsonParser#command}.
+	 * @param ctx the parse tree
+	 */
+	void exitScanInt(QbsonParser.ScanIntContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code subtraction}
 	 * labeled alternative in {@link QbsonParser#command}.

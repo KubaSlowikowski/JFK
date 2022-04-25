@@ -39,6 +39,30 @@ public class QbsonBaseListener implements QbsonListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPrint(QbsonParser.PrintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrint(QbsonParser.PrintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterScanReal(QbsonParser.ScanRealContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitScanReal(QbsonParser.ScanRealContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDivision(QbsonParser.DivisionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -46,6 +70,18 @@ public class QbsonBaseListener implements QbsonListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDivision(QbsonParser.DivisionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterScanInt(QbsonParser.ScanIntContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitScanInt(QbsonParser.ScanIntContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
