@@ -99,18 +99,13 @@ public class QbsonBaseListener implements QbsonListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInt(QbsonParser.IntContext ctx) {
-		int i=1;
-
-	}
+	@Override public void enterInt(QbsonParser.IntContext ctx) {}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInt(QbsonParser.IntContext ctx) {
-		int i = 1;
-	}
+	@Override public void exitInt(QbsonParser.IntContext ctx) {}
 	/**
 	 * {@inheritDoc}
 	 *
