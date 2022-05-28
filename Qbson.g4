@@ -1,10 +1,13 @@
 grammar Qbson;
 
-prog: 'styrt'( line? SEMI)* 'qniec';
+prog: 'styrt' lines 'qniec';
 
-line: ID EQ command                     #assign
-    | PRINT OB ID CB                    #print
-    | IF cond THEN blockif ENDIF   #if;
+lines: ( line? SEMI)*;
+
+line: ID EQ command                         #assign
+    | PRINT OB ID CB                        #print
+    | IF cond THEN blockif ENDIF            #if
+    | REPEAT repetitions blockrepeat ENDREPEAT    #repeat;
 
 command: command ADD command   #addition
     | command SUB command      #subtraction
@@ -18,7 +21,17 @@ command: command ADD command   #addition
 
 cond: ID '==' INT #condition;
 
-blockif: ( line? SEMI)* #blockIf;
+blockif: lines #blockIf;
+
+blockrepeat: lines #blockRepeat;
+
+repetitions: value;
+
+value: ID
+       | INT;
+
+REPEAT: 'powtarzaj';
+ENDREPEAT: 'juz nie powtarzaj';
 
 IF: 'jesli';
 THEN: 'to';

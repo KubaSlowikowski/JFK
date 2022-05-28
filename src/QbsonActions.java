@@ -37,6 +37,7 @@ public class QbsonActions extends QbsonBaseListener {
 
     private final HashMap<String, Type> variables = new HashMap<>();
     private final Stack<Value> stack = new Stack<>();
+    private String value;
 
     //wypisanie kodu wynikowego LLVM
     @Override
@@ -241,6 +242,35 @@ public class QbsonActions extends QbsonBaseListener {
         } else {
             ctx.getStart().getLine();
             printError("Nieznana zmienna: " + ID, ctx.getStart().getLine());
+        }
+    }
+
+    @Override
+    public void exitValue(final QbsonParser.ValueContext ctx) {
+        if (ctx.ID() != null) {
+            String ID = ctx.ID().getText();
+            if (variables.containsKey(ID)) {
+                if (variables.get(ID).equals(Type.INTEGER)) {
+                    LLVMGenerator.loadInt(ID);
+                } else {
+                    LLVMGenerator.loadReal(ID);
+                }
+                value = "%" + (LLVMGenerator.getReg() - 1);
+            } else {
+                printError("Nieznana zmienna: " + ID, ctx.getStart().getLine());
+            }
+        }
+    }
+
+    @Override
+    public void exitRepetitions(final QbsonParser.RepetitionsContext ctx) {
+        LLVMGenerator.repeatStart(value);
+    }
+
+    @Override
+    public void exitBlockRepeat(final QbsonParser.BlockRepeatContext ctx) {
+        if (ctx.getParent() instanceof QbsonParser.RepeatContext) {
+            LLVMGenerator.repeatEnd();
         }
     }
 

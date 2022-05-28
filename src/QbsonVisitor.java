@@ -16,6 +16,12 @@ public interface QbsonVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProg(QbsonParser.ProgContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link QbsonParser#lines}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLines(QbsonParser.LinesContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code assign}
 	 * labeled alternative in {@link QbsonParser#line}.
 	 * @param ctx the parse tree
@@ -36,6 +42,13 @@ public interface QbsonVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIf(QbsonParser.IfContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code repeat}
+	 * labeled alternative in {@link QbsonParser#line}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRepeat(QbsonParser.RepeatContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code scanReal}
 	 * labeled alternative in {@link QbsonParser#command}.
@@ -113,4 +126,23 @@ public interface QbsonVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBlockIf(QbsonParser.BlockIfContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code blockRepeat}
+	 * labeled alternative in {@link QbsonParser#blockrepeat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlockRepeat(QbsonParser.BlockRepeatContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link QbsonParser#repetitions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRepetitions(QbsonParser.RepetitionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link QbsonParser#value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitValue(QbsonParser.ValueContext ctx);
 }

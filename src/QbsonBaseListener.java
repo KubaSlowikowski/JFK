@@ -27,6 +27,18 @@ public class QbsonBaseListener implements QbsonListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterLines(QbsonParser.LinesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLines(QbsonParser.LinesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAssign(QbsonParser.AssignContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -58,6 +70,18 @@ public class QbsonBaseListener implements QbsonListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIf(QbsonParser.IfContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRepeat(QbsonParser.RepeatContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRepeat(QbsonParser.RepeatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -190,6 +214,42 @@ public class QbsonBaseListener implements QbsonListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBlockIf(QbsonParser.BlockIfContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBlockRepeat(QbsonParser.BlockRepeatContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBlockRepeat(QbsonParser.BlockRepeatContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRepetitions(QbsonParser.RepetitionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRepetitions(QbsonParser.RepetitionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterValue(QbsonParser.ValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitValue(QbsonParser.ValueContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

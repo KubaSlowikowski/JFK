@@ -6,12 +6,29 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 public class Main {
 
     /**
-     * styrt
-     *     a=1;
-     *     jesli a == 1 to
-     *         pokazMiSwojeTowary(a);
-     *     wystarczy;
-     * qniec
+     styrt
+         a=1;
+         b=2;
+         jesli a == 1 to
+            pokazMiSwojeTowary(a);
+            jesli b == 2 to
+                pokazMiSwojeTowary(b);
+            wystarczy;
+         wystarczy;
+     qniec
+     */
+
+    /**
+     styrt
+         a=1;
+         b=2;
+         powtarzaj a
+             pokazMiSwojeTowary(a);
+             powtarzaj b
+                 pokazMiSwojeTowary(a);
+             juz nie powtarzaj;
+         juz nie powtarzaj;
+     qniec
      */
 
     public static void main(String[] args) {

@@ -167,6 +167,38 @@ class LLVMGenerator {
         reg++;
     }
 
+    static void repeatStart(String repetitions) {
+        declare(Integer.toString(reg)); // tworzymy iterator w pętli
+        int counter = reg;
+        reg++;
+        assign_i32(Integer.toString(counter), "0");
+        br++;
+        main_text += "br label %cond" + br + "\n";
+        main_text += "cond" + br + ":\n";
+
+        loadInt(Integer.toString(counter));
+        sum_i32("%" + (reg - 1), "1");
+        assign_i32(Integer.toString(counter), "%" + (reg - 1));
+
+        main_text += "%" + reg + " = icmp slt i32 %" + (reg - 2) + ", " + repetitions + "\n";
+        reg++;
+
+        main_text += "br i1 %" + (reg - 1) + ", label %true" + br + ", label %false" + br + "\n";
+        main_text += "true" + br + ":\n";
+
+        brStack.push(br);
+    }
+
+    static void repeatEnd() { // kod na końcu pętli
+        int b = brStack.pop();
+        main_text += "br label %cond" + b + "\n"; // etykieta skoku na początek
+        main_text += "false" + b + ":\n";
+    }
+
+    private static void declare(String id) {
+        main_text += "%" + id + " = alloca i32\n";
+    }
+
     static int getReg() {
         return reg;
     }

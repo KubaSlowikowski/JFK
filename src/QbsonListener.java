@@ -17,6 +17,16 @@ public interface QbsonListener extends ParseTreeListener {
 	 */
 	void exitProg(QbsonParser.ProgContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QbsonParser#lines}.
+	 * @param ctx the parse tree
+	 */
+	void enterLines(QbsonParser.LinesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QbsonParser#lines}.
+	 * @param ctx the parse tree
+	 */
+	void exitLines(QbsonParser.LinesContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code assign}
 	 * labeled alternative in {@link QbsonParser#line}.
 	 * @param ctx the parse tree
@@ -52,6 +62,18 @@ public interface QbsonListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIf(QbsonParser.IfContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code repeat}
+	 * labeled alternative in {@link QbsonParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void enterRepeat(QbsonParser.RepeatContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code repeat}
+	 * labeled alternative in {@link QbsonParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void exitRepeat(QbsonParser.RepeatContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code scanReal}
 	 * labeled alternative in {@link QbsonParser#command}.
@@ -184,4 +206,36 @@ public interface QbsonListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBlockIf(QbsonParser.BlockIfContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code blockRepeat}
+	 * labeled alternative in {@link QbsonParser#blockrepeat}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlockRepeat(QbsonParser.BlockRepeatContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code blockRepeat}
+	 * labeled alternative in {@link QbsonParser#blockrepeat}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlockRepeat(QbsonParser.BlockRepeatContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QbsonParser#repetitions}.
+	 * @param ctx the parse tree
+	 */
+	void enterRepetitions(QbsonParser.RepetitionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QbsonParser#repetitions}.
+	 * @param ctx the parse tree
+	 */
+	void exitRepetitions(QbsonParser.RepetitionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QbsonParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void enterValue(QbsonParser.ValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QbsonParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void exitValue(QbsonParser.ValueContext ctx);
 }
