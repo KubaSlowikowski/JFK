@@ -218,7 +218,7 @@ public class QbsonActions extends QbsonBaseListener {
 
     @Override
     public void exitScanReal(final QbsonParser.ScanRealContext ctx) {
-        String id = LLVMGenerator.scanfInt();
+        String id = LLVMGenerator.scanfReal();
         stack.push(new Value(id, Type.REAL));
     }
 
