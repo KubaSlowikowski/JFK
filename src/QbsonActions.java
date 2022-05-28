@@ -222,6 +222,28 @@ public class QbsonActions extends QbsonBaseListener {
         stack.push(new Value(id, Type.REAL));
     }
 
+    @Override
+    public void enterBlockIf(final QbsonParser.BlockIfContext ctx) {
+        LLVMGenerator.ifStart();
+    }
+
+    @Override
+    public void exitBlockIf(final QbsonParser.BlockIfContext ctx) {
+        LLVMGenerator.ifEnd();
+    }
+
+    @Override
+    public void exitCondition(final QbsonParser.ConditionContext ctx) {
+        String ID = ctx.ID().getText();
+        String INT = ctx.INT().getText();
+        if (variables.containsKey(ID)) {
+            LLVMGenerator.icmp(ID, INT);
+        } else {
+            ctx.getStart().getLine();
+            printError("Nieznana zmienna: " + ID, ctx.getStart().getLine());
+        }
+    }
+
     private void printError(String message, int line) {
         System.err.println("Błąd w linii (" + line + "). Treść błędu: " + message);
         System.exit(1);

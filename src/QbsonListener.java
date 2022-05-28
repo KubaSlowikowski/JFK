@@ -41,6 +41,18 @@ public interface QbsonListener extends ParseTreeListener {
 	 */
 	void exitPrint(QbsonParser.PrintContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code if}
+	 * labeled alternative in {@link QbsonParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void enterIf(QbsonParser.IfContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code if}
+	 * labeled alternative in {@link QbsonParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void exitIf(QbsonParser.IfContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code scanReal}
 	 * labeled alternative in {@link QbsonParser#command}.
 	 * @param ctx the parse tree
@@ -148,4 +160,28 @@ public interface QbsonListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAddition(QbsonParser.AdditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code condition}
+	 * labeled alternative in {@link QbsonParser#cond}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondition(QbsonParser.ConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code condition}
+	 * labeled alternative in {@link QbsonParser#cond}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondition(QbsonParser.ConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code blockIf}
+	 * labeled alternative in {@link QbsonParser#blockif}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlockIf(QbsonParser.BlockIfContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code blockIf}
+	 * labeled alternative in {@link QbsonParser#blockif}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlockIf(QbsonParser.BlockIfContext ctx);
 }

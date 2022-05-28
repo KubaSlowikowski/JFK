@@ -1,8 +1,13 @@
+import java.util.Stack;
+
 class LLVMGenerator {
 
     private static String header_text = "";
     private static String main_text = "";
     private static int reg = 1;
+    private static int br = 0;
+
+    private static final Stack<Integer> brStack = new Stack<>(); // numery otwartych if'ów
 
     //pobranie wart zmiennej
     static String loadReal(String id) {
@@ -128,18 +133,6 @@ class LLVMGenerator {
         reg++;
     }
 
-    //konwersja INT na REAL
-    static void sitofp(String id) {
-        main_text += "%" + reg + " = sitofp i32 " + id + " to double\n";
-        reg++;
-    }
-
-    //konwersja REAL na INT
-    static void fptosi(String id) {
-        main_text += "%" + reg + " = fptosi double " + id + " to i32\n";
-        reg++;
-    }
-
     //generowanie kodu wynikowego LLVM
     static String generate() {
         String text;
@@ -154,7 +147,27 @@ class LLVMGenerator {
         return text;
     }
 
-    public static int getReg() {
+    static void ifStart() {
+        br++;
+        main_text += "br il %" + (reg - 1) + ", label %true" + br + ", label %false" + br + "\n";
+        main_text += "true" + br + ":\n"; // etykiety będziemy nazywać true1, false2,... zamiast 2, 3,...
+        brStack.push(br);
+    }
+
+    static void ifEnd() {
+        int b = brStack.pop();
+        main_text += "br label %false" + b + "\n"; // etykiety będziemy nazywać true1, false2,... zamiast 2, 3,...
+        main_text += "false" + b + ":\n";
+    }
+
+    static void icmp(String id, String value) {
+        main_text += "%" + reg + " = load i32, i32* %" + id + "\n";
+        reg++;
+        main_text += "%" + reg + " = icmp eq i32 %" + (reg - 1) + ", " + value + "\n";
+        reg++;
+    }
+
+    static int getReg() {
         return reg;
     }
 }

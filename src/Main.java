@@ -5,6 +5,15 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 public class Main {
 
+    /**
+     * styrt
+     *     a=1;
+     *     jesli a == 1 to
+     *         pokazMiSwojeTowary(a);
+     *     wystarczy;
+     * qniec
+     */
+
     public static void main(String[] args) {
         String input = "styrt\n" +
                 "a = 2;\n" +

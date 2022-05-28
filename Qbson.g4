@@ -2,8 +2,9 @@ grammar Qbson;
 
 prog: 'styrt'( line? SEMI)* 'qniec';
 
-line: ID EQ command     #assign
-    | PRINT OB ID CB    #print;
+line: ID EQ command                     #assign
+    | PRINT OB ID CB                    #print
+    | IF cond THEN blockif ENDIF   #if;
 
 command: command ADD command   #addition
     | command SUB command      #subtraction
@@ -14,6 +15,14 @@ command: command ADD command   #addition
     | ID                       #id
     | SCAN_INT                 #scanInt
     | SCAN_REAL                #scanReal;
+
+cond: ID '==' INT #condition;
+
+blockif: ( line? SEMI)* #blockIf;
+
+IF: 'jesli';
+THEN: 'to';
+ENDIF: 'wystarczy';
 
 PRINT: 'pokazMiSwojeTowary';
 SCAN_INT: 'czytejIntidzer()';

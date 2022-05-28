@@ -30,6 +30,13 @@ public interface QbsonVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrint(QbsonParser.PrintContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code if}
+	 * labeled alternative in {@link QbsonParser#line}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf(QbsonParser.IfContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code scanReal}
 	 * labeled alternative in {@link QbsonParser#command}.
 	 * @param ctx the parse tree
@@ -92,4 +99,18 @@ public interface QbsonVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAddition(QbsonParser.AdditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code condition}
+	 * labeled alternative in {@link QbsonParser#cond}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondition(QbsonParser.ConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code blockIf}
+	 * labeled alternative in {@link QbsonParser#blockif}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlockIf(QbsonParser.BlockIfContext ctx);
 }
