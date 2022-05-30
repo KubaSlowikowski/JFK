@@ -113,6 +113,26 @@ public interface QbsonVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAddition(QbsonParser.AdditionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link QbsonParser#function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction(QbsonParser.FunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code fParam}
+	 * labeled alternative in {@link QbsonParser#fparam}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFParam(QbsonParser.FParamContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code fBlock}
+	 * labeled alternative in {@link QbsonParser#fblock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFBlock(QbsonParser.FBlockContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code condition}
 	 * labeled alternative in {@link QbsonParser#cond}.
 	 * @param ctx the parse tree

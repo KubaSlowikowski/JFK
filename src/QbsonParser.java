@@ -16,16 +16,18 @@ public class QbsonParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, REPEAT=4, ENDREPEAT=5, IF=6, THEN=7, ENDIF=8, 
-		PRINT=9, SCAN_INT=10, SCAN_REAL=11, ADD=12, SUB=13, MULT=14, DIV=15, EQ=16, 
-		OB=17, CB=18, SEMI=19, COMMENT=20, INT=21, REAL=22, ID=23, WS=24;
+		T__0=1, T__1=2, T__2=3, REPEAT=4, ENDREPEAT=5, FUNCTION=6, ENDFUNCTION=7, 
+		IF=8, THEN=9, ENDIF=10, PRINT=11, SCAN_INT=12, SCAN_REAL=13, ADD=14, SUB=15, 
+		MULT=16, DIV=17, EQ=18, OB=19, CB=20, SEMI=21, COMMENT=22, INT=23, REAL=24, 
+		ID=25, WS=26;
 	public static final int
-		RULE_prog = 0, RULE_lines = 1, RULE_line = 2, RULE_command = 3, RULE_cond = 4, 
-		RULE_blockif = 5, RULE_blockrepeat = 6, RULE_repetitions = 7, RULE_value = 8;
+		RULE_prog = 0, RULE_lines = 1, RULE_line = 2, RULE_command = 3, RULE_function = 4, 
+		RULE_fparam = 5, RULE_fblock = 6, RULE_cond = 7, RULE_blockif = 8, RULE_blockrepeat = 9, 
+		RULE_repetitions = 10, RULE_value = 11;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"prog", "lines", "line", "command", "cond", "blockif", "blockrepeat", 
-			"repetitions", "value"
+			"prog", "lines", "line", "command", "function", "fparam", "fblock", "cond", 
+			"blockif", "blockrepeat", "repetitions", "value"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -33,16 +35,18 @@ public class QbsonParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'styrt'", "'qniec'", "'=='", "'powtarzaj'", "'juz nie powtarzaj'", 
-			"'jesli'", "'to'", "'wystarczy'", "'pokazMiSwojeTowary'", "'czytejIntidzer()'", 
-			"'czytejRijal()'", "'+'", "'-'", "'*'", "'/'", "'='", "'('", "')'", "';'"
+			"'fun'", "'endfun'", "'jesli'", "'to'", "'wystarczy'", "'pokazMiSwojeTowary'", 
+			"'czytejIntidzer()'", "'czytejRijal()'", "'+'", "'-'", "'*'", "'/'", 
+			"'='", "'('", "')'", "';'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, "REPEAT", "ENDREPEAT", "IF", "THEN", "ENDIF", 
-			"PRINT", "SCAN_INT", "SCAN_REAL", "ADD", "SUB", "MULT", "DIV", "EQ", 
-			"OB", "CB", "SEMI", "COMMENT", "INT", "REAL", "ID", "WS"
+			null, null, null, null, "REPEAT", "ENDREPEAT", "FUNCTION", "ENDFUNCTION", 
+			"IF", "THEN", "ENDIF", "PRINT", "SCAN_INT", "SCAN_REAL", "ADD", "SUB", 
+			"MULT", "DIV", "EQ", "OB", "CB", "SEMI", "COMMENT", "INT", "REAL", "ID", 
+			"WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -125,11 +129,11 @@ public class QbsonParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(18);
+			setState(24);
 			match(T__0);
-			setState(19);
+			setState(25);
 			lines();
-			setState(20);
+			setState(26);
 			match(T__1);
 			}
 		}
@@ -154,6 +158,12 @@ public class QbsonParser extends Parser {
 		}
 		public LineContext line(int i) {
 			return getRuleContext(LineContext.class,i);
+		}
+		public List<FunctionContext> function() {
+			return getRuleContexts(FunctionContext.class);
+		}
+		public FunctionContext function(int i) {
+			return getRuleContext(FunctionContext.class,i);
 		}
 		public LinesContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -181,27 +191,40 @@ public class QbsonParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(28);
+			setState(35);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << REPEAT) | (1L << IF) | (1L << PRINT) | (1L << SEMI) | (1L << ID))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << REPEAT) | (1L << FUNCTION) | (1L << IF) | (1L << PRINT) | (1L << SEMI) | (1L << ID))) != 0)) {
 				{
 				{
-				setState(23);
+				setState(30);
 				_errHandler.sync(this);
-				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << REPEAT) | (1L << IF) | (1L << PRINT) | (1L << ID))) != 0)) {
+				switch (_input.LA(1)) {
+				case REPEAT:
+				case IF:
+				case PRINT:
+				case ID:
 					{
-					setState(22);
+					setState(28);
 					line();
 					}
+					break;
+				case FUNCTION:
+					{
+					setState(29);
+					function();
+					}
+					break;
+				case SEMI:
+					break;
+				default:
+					break;
 				}
-
-				setState(25);
+				setState(32);
 				match(SEMI);
 				}
 				}
-				setState(30);
+				setState(37);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -324,18 +347,18 @@ public class QbsonParser extends Parser {
 		LineContext _localctx = new LineContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_line);
 		try {
-			setState(49);
+			setState(56);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case ID:
 				_localctx = new AssignContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(31);
+				setState(38);
 				match(ID);
-				setState(32);
+				setState(39);
 				match(EQ);
-				setState(33);
+				setState(40);
 				command(0);
 				}
 				break;
@@ -343,13 +366,13 @@ public class QbsonParser extends Parser {
 				_localctx = new PrintContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(34);
+				setState(41);
 				match(PRINT);
-				setState(35);
+				setState(42);
 				match(OB);
-				setState(36);
+				setState(43);
 				match(ID);
-				setState(37);
+				setState(44);
 				match(CB);
 				}
 				break;
@@ -357,15 +380,15 @@ public class QbsonParser extends Parser {
 				_localctx = new IfContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(38);
+				setState(45);
 				match(IF);
-				setState(39);
+				setState(46);
 				cond();
-				setState(40);
+				setState(47);
 				match(THEN);
-				setState(41);
+				setState(48);
 				blockif();
-				setState(42);
+				setState(49);
 				match(ENDIF);
 				}
 				break;
@@ -373,13 +396,13 @@ public class QbsonParser extends Parser {
 				_localctx = new RepeatContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(44);
+				setState(51);
 				match(REPEAT);
-				setState(45);
+				setState(52);
 				repetitions();
-				setState(46);
+				setState(53);
 				blockrepeat();
-				setState(47);
+				setState(54);
 				match(ENDREPEAT);
 				}
 				break;
@@ -602,7 +625,7 @@ public class QbsonParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(57);
+			setState(64);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INT:
@@ -611,7 +634,7 @@ public class QbsonParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(52);
+				setState(59);
 				match(INT);
 				}
 				break;
@@ -620,7 +643,7 @@ public class QbsonParser extends Parser {
 				_localctx = new RealContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(53);
+				setState(60);
 				match(REAL);
 				}
 				break;
@@ -629,7 +652,7 @@ public class QbsonParser extends Parser {
 				_localctx = new IdContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(54);
+				setState(61);
 				match(ID);
 				}
 				break;
@@ -638,7 +661,7 @@ public class QbsonParser extends Parser {
 				_localctx = new ScanIntContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(55);
+				setState(62);
 				match(SCAN_INT);
 				}
 				break;
@@ -647,7 +670,7 @@ public class QbsonParser extends Parser {
 				_localctx = new ScanRealContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(56);
+				setState(63);
 				match(SCAN_REAL);
 				}
 				break;
@@ -655,7 +678,7 @@ public class QbsonParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(73);
+			setState(80);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -663,18 +686,18 @@ public class QbsonParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(71);
+					setState(78);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 					case 1:
 						{
 						_localctx = new AdditionContext(new CommandContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_command);
-						setState(59);
+						setState(66);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-						setState(60);
+						setState(67);
 						match(ADD);
-						setState(61);
+						setState(68);
 						command(10);
 						}
 						break;
@@ -682,11 +705,11 @@ public class QbsonParser extends Parser {
 						{
 						_localctx = new SubtractionContext(new CommandContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_command);
-						setState(62);
+						setState(69);
 						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
-						setState(63);
+						setState(70);
 						match(SUB);
-						setState(64);
+						setState(71);
 						command(9);
 						}
 						break;
@@ -694,11 +717,11 @@ public class QbsonParser extends Parser {
 						{
 						_localctx = new MultiplicationContext(new CommandContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_command);
-						setState(65);
+						setState(72);
 						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
-						setState(66);
+						setState(73);
 						match(MULT);
-						setState(67);
+						setState(74);
 						command(8);
 						}
 						break;
@@ -706,18 +729,18 @@ public class QbsonParser extends Parser {
 						{
 						_localctx = new DivisionContext(new CommandContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_command);
-						setState(68);
+						setState(75);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(69);
+						setState(76);
 						match(DIV);
-						setState(70);
+						setState(77);
 						command(7);
 						}
 						break;
 					}
 					} 
 				}
-				setState(75);
+				setState(82);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			}
@@ -730,6 +753,195 @@ public class QbsonParser extends Parser {
 		}
 		finally {
 			unrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public static class FunctionContext extends ParserRuleContext {
+		public TerminalNode FUNCTION() { return getToken(QbsonParser.FUNCTION, 0); }
+		public FparamContext fparam() {
+			return getRuleContext(FparamContext.class,0);
+		}
+		public FblockContext fblock() {
+			return getRuleContext(FblockContext.class,0);
+		}
+		public TerminalNode ENDFUNCTION() { return getToken(QbsonParser.ENDFUNCTION, 0); }
+		public FunctionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_function; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof QbsonListener ) ((QbsonListener)listener).enterFunction(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof QbsonListener ) ((QbsonListener)listener).exitFunction(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QbsonVisitor ) return ((QbsonVisitor<? extends T>)visitor).visitFunction(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final FunctionContext function() throws RecognitionException {
+		FunctionContext _localctx = new FunctionContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_function);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(83);
+			match(FUNCTION);
+			setState(84);
+			fparam();
+			setState(85);
+			fblock();
+			setState(86);
+			match(ENDFUNCTION);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class FparamContext extends ParserRuleContext {
+		public FparamContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_fparam; }
+	 
+		public FparamContext() { }
+		public void copyFrom(FparamContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class FParamContext extends FparamContext {
+		public TerminalNode ID() { return getToken(QbsonParser.ID, 0); }
+		public FParamContext(FparamContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof QbsonListener ) ((QbsonListener)listener).enterFParam(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof QbsonListener ) ((QbsonListener)listener).exitFParam(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QbsonVisitor ) return ((QbsonVisitor<? extends T>)visitor).visitFParam(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final FparamContext fparam() throws RecognitionException {
+		FparamContext _localctx = new FparamContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_fparam);
+		try {
+			_localctx = new FParamContext(_localctx);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(88);
+			match(ID);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class FblockContext extends ParserRuleContext {
+		public FblockContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_fblock; }
+	 
+		public FblockContext() { }
+		public void copyFrom(FblockContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class FBlockContext extends FblockContext {
+		public List<TerminalNode> SEMI() { return getTokens(QbsonParser.SEMI); }
+		public TerminalNode SEMI(int i) {
+			return getToken(QbsonParser.SEMI, i);
+		}
+		public List<LineContext> line() {
+			return getRuleContexts(LineContext.class);
+		}
+		public LineContext line(int i) {
+			return getRuleContext(LineContext.class,i);
+		}
+		public FBlockContext(FblockContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof QbsonListener ) ((QbsonListener)listener).enterFBlock(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof QbsonListener ) ((QbsonListener)listener).exitFBlock(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof QbsonVisitor ) return ((QbsonVisitor<? extends T>)visitor).visitFBlock(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final FblockContext fblock() throws RecognitionException {
+		FblockContext _localctx = new FblockContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_fblock);
+		int _la;
+		try {
+			_localctx = new FBlockContext(_localctx);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(96);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << REPEAT) | (1L << IF) | (1L << PRINT) | (1L << SEMI) | (1L << ID))) != 0)) {
+				{
+				{
+				setState(91);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << REPEAT) | (1L << IF) | (1L << PRINT) | (1L << ID))) != 0)) {
+					{
+					setState(90);
+					line();
+					}
+				}
+
+				setState(93);
+				match(SEMI);
+				}
+				}
+				setState(98);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
 		}
 		return _localctx;
 	}
@@ -766,16 +978,16 @@ public class QbsonParser extends Parser {
 
 	public final CondContext cond() throws RecognitionException {
 		CondContext _localctx = new CondContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_cond);
+		enterRule(_localctx, 14, RULE_cond);
 		try {
 			_localctx = new ConditionContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(76);
+			setState(99);
 			match(ID);
-			setState(77);
+			setState(100);
 			match(T__2);
-			setState(78);
+			setState(101);
 			match(INT);
 			}
 		}
@@ -823,12 +1035,12 @@ public class QbsonParser extends Parser {
 
 	public final BlockifContext blockif() throws RecognitionException {
 		BlockifContext _localctx = new BlockifContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_blockif);
+		enterRule(_localctx, 16, RULE_blockif);
 		try {
 			_localctx = new BlockIfContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(80);
+			setState(103);
 			lines();
 			}
 		}
@@ -876,12 +1088,12 @@ public class QbsonParser extends Parser {
 
 	public final BlockrepeatContext blockrepeat() throws RecognitionException {
 		BlockrepeatContext _localctx = new BlockrepeatContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_blockrepeat);
+		enterRule(_localctx, 18, RULE_blockrepeat);
 		try {
 			_localctx = new BlockRepeatContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(82);
+			setState(105);
 			lines();
 			}
 		}
@@ -921,11 +1133,11 @@ public class QbsonParser extends Parser {
 
 	public final RepetitionsContext repetitions() throws RecognitionException {
 		RepetitionsContext _localctx = new RepetitionsContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_repetitions);
+		enterRule(_localctx, 20, RULE_repetitions);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(84);
+			setState(107);
 			value();
 			}
 		}
@@ -964,12 +1176,12 @@ public class QbsonParser extends Parser {
 
 	public final ValueContext value() throws RecognitionException {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_value);
+		enterRule(_localctx, 22, RULE_value);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(86);
+			setState(109);
 			_la = _input.LA(1);
 			if ( !(_la==INT || _la==ID) ) {
 			_errHandler.recoverInline(this);
@@ -1014,29 +1226,33 @@ public class QbsonParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\32[\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2"+
-		"\3\2\3\3\5\3\32\n\3\3\3\7\3\35\n\3\f\3\16\3 \13\3\3\4\3\4\3\4\3\4\3\4"+
-		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4\64\n\4\3\5\3"+
-		"\5\3\5\3\5\3\5\3\5\5\5<\n\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3"+
-		"\5\3\5\7\5J\n\5\f\5\16\5M\13\5\3\6\3\6\3\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t"+
-		"\3\n\3\n\3\n\2\3\b\13\2\4\6\b\n\f\16\20\22\2\3\4\2\27\27\31\31\2^\2\24"+
-		"\3\2\2\2\4\36\3\2\2\2\6\63\3\2\2\2\b;\3\2\2\2\nN\3\2\2\2\fR\3\2\2\2\16"+
-		"T\3\2\2\2\20V\3\2\2\2\22X\3\2\2\2\24\25\7\3\2\2\25\26\5\4\3\2\26\27\7"+
-		"\4\2\2\27\3\3\2\2\2\30\32\5\6\4\2\31\30\3\2\2\2\31\32\3\2\2\2\32\33\3"+
-		"\2\2\2\33\35\7\25\2\2\34\31\3\2\2\2\35 \3\2\2\2\36\34\3\2\2\2\36\37\3"+
-		"\2\2\2\37\5\3\2\2\2 \36\3\2\2\2!\"\7\31\2\2\"#\7\22\2\2#\64\5\b\5\2$%"+
-		"\7\13\2\2%&\7\23\2\2&\'\7\31\2\2\'\64\7\24\2\2()\7\b\2\2)*\5\n\6\2*+\7"+
-		"\t\2\2+,\5\f\7\2,-\7\n\2\2-\64\3\2\2\2./\7\6\2\2/\60\5\20\t\2\60\61\5"+
-		"\16\b\2\61\62\7\7\2\2\62\64\3\2\2\2\63!\3\2\2\2\63$\3\2\2\2\63(\3\2\2"+
-		"\2\63.\3\2\2\2\64\7\3\2\2\2\65\66\b\5\1\2\66<\7\27\2\2\67<\7\30\2\28<"+
-		"\7\31\2\29<\7\f\2\2:<\7\r\2\2;\65\3\2\2\2;\67\3\2\2\2;8\3\2\2\2;9\3\2"+
-		"\2\2;:\3\2\2\2<K\3\2\2\2=>\f\13\2\2>?\7\16\2\2?J\5\b\5\f@A\f\n\2\2AB\7"+
-		"\17\2\2BJ\5\b\5\13CD\f\t\2\2DE\7\20\2\2EJ\5\b\5\nFG\f\b\2\2GH\7\21\2\2"+
-		"HJ\5\b\5\tI=\3\2\2\2I@\3\2\2\2IC\3\2\2\2IF\3\2\2\2JM\3\2\2\2KI\3\2\2\2"+
-		"KL\3\2\2\2L\t\3\2\2\2MK\3\2\2\2NO\7\31\2\2OP\7\5\2\2PQ\7\27\2\2Q\13\3"+
-		"\2\2\2RS\5\4\3\2S\r\3\2\2\2TU\5\4\3\2U\17\3\2\2\2VW\5\22\n\2W\21\3\2\2"+
-		"\2XY\t\2\2\2Y\23\3\2\2\2\b\31\36\63;IK";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\34r\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
+		"\f\t\f\4\r\t\r\3\2\3\2\3\2\3\2\3\3\3\3\5\3!\n\3\3\3\7\3$\n\3\f\3\16\3"+
+		"\'\13\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
+		"\4\3\4\3\4\5\4;\n\4\3\5\3\5\3\5\3\5\3\5\3\5\5\5C\n\5\3\5\3\5\3\5\3\5\3"+
+		"\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5Q\n\5\f\5\16\5T\13\5\3\6\3\6\3\6\3\6"+
+		"\3\6\3\7\3\7\3\b\5\b^\n\b\3\b\7\ba\n\b\f\b\16\bd\13\b\3\t\3\t\3\t\3\t"+
+		"\3\n\3\n\3\13\3\13\3\f\3\f\3\r\3\r\3\r\2\3\b\16\2\4\6\b\n\f\16\20\22\24"+
+		"\26\30\2\3\4\2\31\31\33\33\2u\2\32\3\2\2\2\4%\3\2\2\2\6:\3\2\2\2\bB\3"+
+		"\2\2\2\nU\3\2\2\2\fZ\3\2\2\2\16b\3\2\2\2\20e\3\2\2\2\22i\3\2\2\2\24k\3"+
+		"\2\2\2\26m\3\2\2\2\30o\3\2\2\2\32\33\7\3\2\2\33\34\5\4\3\2\34\35\7\4\2"+
+		"\2\35\3\3\2\2\2\36!\5\6\4\2\37!\5\n\6\2 \36\3\2\2\2 \37\3\2\2\2 !\3\2"+
+		"\2\2!\"\3\2\2\2\"$\7\27\2\2# \3\2\2\2$\'\3\2\2\2%#\3\2\2\2%&\3\2\2\2&"+
+		"\5\3\2\2\2\'%\3\2\2\2()\7\33\2\2)*\7\24\2\2*;\5\b\5\2+,\7\r\2\2,-\7\25"+
+		"\2\2-.\7\33\2\2.;\7\26\2\2/\60\7\n\2\2\60\61\5\20\t\2\61\62\7\13\2\2\62"+
+		"\63\5\22\n\2\63\64\7\f\2\2\64;\3\2\2\2\65\66\7\6\2\2\66\67\5\26\f\2\67"+
+		"8\5\24\13\289\7\7\2\29;\3\2\2\2:(\3\2\2\2:+\3\2\2\2:/\3\2\2\2:\65\3\2"+
+		"\2\2;\7\3\2\2\2<=\b\5\1\2=C\7\31\2\2>C\7\32\2\2?C\7\33\2\2@C\7\16\2\2"+
+		"AC\7\17\2\2B<\3\2\2\2B>\3\2\2\2B?\3\2\2\2B@\3\2\2\2BA\3\2\2\2CR\3\2\2"+
+		"\2DE\f\13\2\2EF\7\20\2\2FQ\5\b\5\fGH\f\n\2\2HI\7\21\2\2IQ\5\b\5\13JK\f"+
+		"\t\2\2KL\7\22\2\2LQ\5\b\5\nMN\f\b\2\2NO\7\23\2\2OQ\5\b\5\tPD\3\2\2\2P"+
+		"G\3\2\2\2PJ\3\2\2\2PM\3\2\2\2QT\3\2\2\2RP\3\2\2\2RS\3\2\2\2S\t\3\2\2\2"+
+		"TR\3\2\2\2UV\7\b\2\2VW\5\f\7\2WX\5\16\b\2XY\7\t\2\2Y\13\3\2\2\2Z[\7\33"+
+		"\2\2[\r\3\2\2\2\\^\5\6\4\2]\\\3\2\2\2]^\3\2\2\2^_\3\2\2\2_a\7\27\2\2`"+
+		"]\3\2\2\2ad\3\2\2\2b`\3\2\2\2bc\3\2\2\2c\17\3\2\2\2db\3\2\2\2ef\7\33\2"+
+		"\2fg\7\5\2\2gh\7\31\2\2h\21\3\2\2\2ij\5\4\3\2j\23\3\2\2\2kl\5\4\3\2l\25"+
+		"\3\2\2\2mn\5\30\r\2n\27\3\2\2\2op\t\2\2\2p\31\3\2\2\2\n %:BPR]b";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

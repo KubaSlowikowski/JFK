@@ -183,6 +183,40 @@ public interface QbsonListener extends ParseTreeListener {
 	 */
 	void exitAddition(QbsonParser.AdditionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QbsonParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction(QbsonParser.FunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QbsonParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction(QbsonParser.FunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code fParam}
+	 * labeled alternative in {@link QbsonParser#fparam}.
+	 * @param ctx the parse tree
+	 */
+	void enterFParam(QbsonParser.FParamContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code fParam}
+	 * labeled alternative in {@link QbsonParser#fparam}.
+	 * @param ctx the parse tree
+	 */
+	void exitFParam(QbsonParser.FParamContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code fBlock}
+	 * labeled alternative in {@link QbsonParser#fblock}.
+	 * @param ctx the parse tree
+	 */
+	void enterFBlock(QbsonParser.FBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code fBlock}
+	 * labeled alternative in {@link QbsonParser#fblock}.
+	 * @param ctx the parse tree
+	 */
+	void exitFBlock(QbsonParser.FBlockContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code condition}
 	 * labeled alternative in {@link QbsonParser#cond}.
 	 * @param ctx the parse tree

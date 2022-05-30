@@ -2,7 +2,7 @@ grammar Qbson;
 
 prog: 'styrt' lines 'qniec';
 
-lines: ( line? SEMI)*;
+lines: ( (line | function)? SEMI)*;
 
 line: ID EQ command                         #assign
     | PRINT OB ID CB                        #print
@@ -19,6 +19,13 @@ command: command ADD command   #addition
     | SCAN_INT                 #scanInt
     | SCAN_REAL                #scanReal;
 
+
+function: FUNCTION fparam fblock ENDFUNCTION;
+
+fparam: ID #fParam;
+
+fblock: (line? SEMI)* #fBlock;
+
 cond: ID '==' INT #condition;
 
 blockif: lines #blockIf;
@@ -32,6 +39,8 @@ value: ID
 
 REPEAT: 'powtarzaj';
 ENDREPEAT: 'juz nie powtarzaj';
+FUNCTION: 'fun';
+ENDFUNCTION: 'endfun';
 
 IF: 'jesli';
 THEN: 'to';
